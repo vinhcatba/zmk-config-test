@@ -14,7 +14,7 @@
             bindings = <
                 &kp Z           &kp M    &kp K
                 &bt BT_SEL 0    &kp B    &kp C
-                &tog 1          &kp E    &kp F
+                &bt BT_CLR_ALL  &kp E    &kp F
             >;
         };
 
