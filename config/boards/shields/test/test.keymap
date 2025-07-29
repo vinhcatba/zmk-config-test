@@ -13,7 +13,7 @@
             // |     D     |     E     |     F     |
             bindings = <
                 &kp Z    &kp M    &kp K
-                &kp A    &kp B    &kp C
+                &mo 1    &kp B    &kp C
                 &kp D    &kp E    &kp F
             >;
         };
