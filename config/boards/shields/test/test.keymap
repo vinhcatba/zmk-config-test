@@ -12,9 +12,9 @@
             // |     A     |     B     |     C     |
             // |     D     |     E     |     F     |
             bindings = <
-                &kp Z    &kp M    &kp K
-                &mo 1    &kp B    &kp C
-                &kp D    &kp E    &kp F
+                &kp Z           &kp M    &kp K
+                &bt BT_SEL 0    &kp B    &kp C
+                &tog 1          &kp E    &kp F
             >;
         };
 
