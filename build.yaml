@@ -19,6 +19,6 @@
 #
 ---
 include:
-  - board: nice_nano_v2
+  - board: nice_nano_v2//zmk
     shield: test
     snippet: zmk-usb-logging
