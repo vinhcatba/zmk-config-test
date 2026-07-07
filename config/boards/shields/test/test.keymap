@@ -8,7 +8,7 @@
         dpi_cycle: sensor_dpi_cycle {
             compatible = "zmk,behavior-sensor-attr-cycle";
             #binding-cells = <1>;
-            values = < 100 300 600 900 1200 >;
+            values = < 200 1000 2000 3200>;
             attr = <0>;
             sensor_device = <&trackball>;
             display-name = "DPI cycle";
