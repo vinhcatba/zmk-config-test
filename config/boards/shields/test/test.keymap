@@ -3,6 +3,19 @@
 #include <dt-bindings/zmk/bt.h>
 
 / {
+    behaviors {
+        // Behaviour to cycle through DPI values on a keypress
+        dpi_cycle: sensor_dpi_cycle {
+            compatible = "zmk,behavior-sensor-attr-cycle";
+            #binding-cells = <1>;
+            values = < 100 300 600 900 1200 >;
+            attr = <0>;
+            sensor_device = <&trackball>;
+            display-name = "DPI cycle";
+            persistant;
+        };
+    };
+
     keymap {
         compatible = "zmk,keymap";
 
@@ -12,7 +25,7 @@
             // |     A     |
             // |     D     |
             bindings = <
-                &kp Z
+                &kp &dpi_cycle(1)
                 &bt BT_SEL 0
                 &bt BT_CLR_ALL
             >;
