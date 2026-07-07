@@ -1,5 +1,3 @@
 build:
   settings:
-    depends:
-      - zmk-behavior-sensor-attr-cycle
     board_root: .
