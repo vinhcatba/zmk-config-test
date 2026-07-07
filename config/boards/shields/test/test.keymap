@@ -25,7 +25,7 @@
             // |     A     |
             // |     D     |
             bindings = <
-                &mkp MB4 &dpi_cycle(1)
+                &dpi_cycle(1)
                 &bt BT_SEL 0
                 &bt BT_CLR_ALL
             >;
