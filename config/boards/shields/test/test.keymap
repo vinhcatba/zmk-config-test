@@ -10,7 +10,8 @@
             #binding-cells = <1>;
             values = < 200 1000 2000 3200>;
             attr = <0>;
-            sensor_device = <&trackball>;
+            //sensor_device = <&trackball>;
+            sensor_device = <&trackball2>;
             display-name = "DPI cycle";
             persistant;
         };
