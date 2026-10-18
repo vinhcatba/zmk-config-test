@@ -85,7 +85,7 @@
 
         cpi = <600>;
         //swap-xy; /* optional */
-        invert-x; /* optional */
+        //invert-x; /* optional */
         invert-y; /* optional */
         evt-type = <INPUT_EV_REL>;
         x-input-code = <INPUT_REL_X>;
