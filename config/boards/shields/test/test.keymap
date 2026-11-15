@@ -25,17 +25,17 @@
             // |     A     |
             // |     D     |
             bindings = <
-                &dpi_cycle(1)
-                &bt BT_SEL 0
+                &mkp LCLK
+                &mkp RCLK
                 &bt BT_CLR_ALL
             >;
         };
 
         bt_layer { // bluetooth layer
             bindings = <
-                &bt BT_SEL 0
-                &none
-                &none
+                &mkp LCLK
+                &mkp RCLK
+                &bt BT_CLR_ALL
             >;
         };
     };
