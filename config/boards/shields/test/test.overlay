@@ -48,8 +48,8 @@
 
     default_transform: keymap_transform0 {
         compatible = "zmk,matrix-transform";
-        columns = <1>; // Length of the "col-gpios" array
-        rows = <1>; // Length of the "row-gpios" array
+        columns = <2>; // Length of the "col-gpios" array
+        rows = <2>; // Length of the "row-gpios" array
         map = <
         //   Key left
             RC(0,0)
