@@ -1,0 +1,18 @@
+# SPDX-License-Identifier: MIT
+
+description: Input Processor for scaling scroll values with a runtime-adjustable divisor
+
+compatible: "zmk,input-processor-scroll-scaler-dyn"
+
+include: ip_zero_param.yaml
+
+properties:
+  type:
+    type: int
+    required: true
+  codes:
+    type: array
+    required: true
+  default-divisor:
+    type: int
+    default: 16

@@ -186,8 +186,9 @@
       <text x="59" y="88" class="key-sub">(trans)</text>
       <!-- Right Pink Keycap -->
       <rect x="268" y="42" width="66" height="66" class="keycap"/>
-      <text x="301" y="73" class="key-label">RCLK</text>
-      <text x="301" y="88" class="key-sub">(trans)</text>
+      <text x="301" y="69" class="key-label">Studio</text>
+      <text x="301" y="83" class="key-sub">Scroll Speed</text>
+      <text x="301" y="96" class="key-sub">(No-op tap)</text>
       <!-- Front Edge FN & Power -->
       <rect x="166" y="131" width="28" height="10" class="fn-btn"/>
       <rect x="242" y="131" width="28" height="10" class="pwr-sw"/>

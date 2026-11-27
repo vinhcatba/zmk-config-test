@@ -42,6 +42,22 @@
             tapping-term-ms = <200>;
             bindings = <&mo>, <&tog>;
         };
+
+        // ZMK Studio Save: sets dynamic scroll divisor (no-op on physical press)
+        scroll_scaler: scroll_scaler {
+            compatible = "zmk,behavior-scroll-scaler";
+            #binding-cells = <1>;
+            display-name = "Scroll Speed";
+        };
+    };
+
+    zip_scroll_scaler_dyn: zip_scroll_scaler_dyn {
+        compatible = "zmk,input-processor-scroll-scaler-dyn";
+        #input-processor-cells = <0>;
+        type = <INPUT_EV_REL>;
+        codes = <INPUT_REL_WHEEL INPUT_REL_HWHEEL>;
+        default-divisor = <24>;
+        track-remainders;
     };
 
     keymap {
@@ -82,7 +98,7 @@
             display-name = "Scroll";
             bindings = <
                 &trans
-                &trans
+                &scroll_scaler 24
                 &trans
             >;
         };
@@ -95,7 +111,7 @@
         input-processors
             = <&zip_xy_to_scroll_mapper>
             , <&zip_scroll_snap>
-            , <&zip_scroll_scaler 1 16>
+            , <&zip_scroll_scaler_dyn>
             , <&zip_scroll_transform INPUT_TRANSFORM_Y_INVERT>
             ;
     };

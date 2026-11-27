@@ -10,7 +10,7 @@ Custom [ZMK](https://zmk.dev/) firmware configuration for a wireless 3-button **
 
 - **PMW3610 Optical Trackball** (`spi0`, `600 CPI` default, `12 ms` minimum BLE report interval for smooth macOS/Windows/iOS tracking).
 - **2-Profile Bluetooth + Per-Profile SK6812-mini-e LEDs** (`spi3`, 2 addressable LEDs on `P0.09`, software-reversed so Left LED = Profile 0 and Right LED = Profile 1).
-- **Toggleable Trackball Scroll Mode**: Hold **FN** + tap **Left** to toggle axis-snapped 2D ball-to-scroll (`zmk-scroll-snap`, `1/16` scaling, Y-inverted for standard wheel direction) while keeping Left/Right clicks and FN active.
+- **Toggleable Trackball Scroll Mode**: Hold **FN** + tap **Left** to toggle axis-snapped 2D ball-to-scroll (`zmk-scroll-snap`, Y-inverted, Studio-configurable scroll speed `1/4`–`1/64`, default `1/16`) while keeping Left click and FN active.
 - **Persistent DPI Cycle + Instant Custom DPI via ZMK Studio**:
   - Quick-tap **FN** cycles through `600`, `1000`, and `200` DPI and saves the choice to flash.
   - **ZMK Studio** lets you pick any custom DPI from `200` to `3200` (in steps of `200`) on the **FN** key and applies it **immediately when you click Save** (no keypress needed).
@@ -39,7 +39,7 @@ Custom [ZMK](https://zmk.dev/) firmware configuration for a wireless 3-button **
 | `0` | **Default** | Always active | `&mkp LCLK` | `&mkp RCLK` | Tap: Cycle DPI (`600 / 1000 / 200`)<br>Hold: Layer 1 (`BT`) | Cursor move |
 | `1` | **BT** | Hold **FN** | Tap: Toggle Layer 3 (`Scroll`)<br>Hold: Layer 2 (`BT Clear`) | `&bt BT_NXT` (Cycle Profile `0 ↔ 1`) | `&trans` (held) | Cursor move |
 | `2` | **BT Clear** | Hold **FN** + Hold **Left** | `&trans` (held) | `&bt_clr_all_led` (Clear all BT bonds + blink LEDs) | `&trans` (held) | Cursor move |
-| `3` | **Scroll** | Hold **FN** + Tap **Left** | `&trans` (`LCLK`) | `&trans` (`RCLK`) | `&trans` (DPI / `BT`) | Scroll wheel (`1/16`) |
+| `3` | **Scroll** | Hold **FN** + Tap **Left** | `&trans` (`LCLK`) | `&scroll_scaler 16` (Studio Scroll Speed; no-op on press) | `&trans` (DPI / `BT`) | Scroll wheel (Studio-configurable speed) |
 
 ### Quick Usage
 - **Cycle DPI**: Quick-tap **FN**.
@@ -60,13 +60,17 @@ Custom [ZMK](https://zmk.dev/) firmware configuration for a wireless 3-button **
   - Hold activates `BT` (Layer 1); tap invokes `dpi_set`.
 - **`bt_scroll` (`zmk,behavior-hold-tap`, `hold-preferred`, `200 ms`)**:
   - Hold activates `BT Clear` (Layer 2); tap toggles `Scroll` (Layer 3).
+- **`scroll_scaler` (`zmk,behavior-scroll-scaler`)** — implemented in [src/behavior_scroll_scaler.c](src/behavior_scroll_scaler.c) & [src/input_processor_scroll_scaler_dyn.c](src/input_processor_scroll_scaler_dyn.c):
+  - Bound to the **Right** key on Layer 3 (`Scroll`); pressing it physically does nothing.
+  - Changing its parameter (`1/4` through `1/64`) in **ZMK Studio** and clicking **Save** updates the scroll divisor **immediately** and persists it in flash.
 - **`&bt_clr_all_led` (`zmk,behavior-bt-profile-led`)**:
   - Clears all Bluetooth bonds and triggers the all-LED quick-blink confirmation.
 
 ### Using ZMK Studio
 1. Open [zmk.studio](https://zmk.studio/) and connect over **USB** or **Bluetooth**.
 2. Click the **FN** key on Layer 0 (`FN / DPI`), keep Param 1 set to **BT**, and select any custom DPI from **200 DPI** to **3200 DPI** (step `200`) for Param 2.
-3. Click **Save** — the new custom DPI takes effect immediately without tapping any key, and tapping **FN** afterward continues to cycle `600 → 1000 → 200`.
+3. To tune scroll speed, switch to Layer 3 (**Scroll**), click the **Right** key (`Scroll Speed`), and pick a divisor from **1/4 (Fastest)** to **1/64 (Very Slow)**.
+4. Click **Save** — both custom DPI and scroll speed take effect immediately without tapping any key, and tapping **FN** afterward continues to cycle `600 → 1000 → 200`.
 
 > **Note:** Changes saved in ZMK Studio are stored in NVS flash and override future `.keymap` edits until you click **Restore Stock Settings** in ZMK Studio (or flash a `settings_reset` firmware).
 
