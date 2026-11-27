@@ -10,7 +10,7 @@ Custom [ZMK](https://zmk.dev/) firmware configuration for a wireless 3-button **
 
 - **PMW3610 Optical Trackball** (`spi0`, `600 CPI` default, `12 ms` minimum BLE report interval for smooth macOS/Windows/iOS tracking).
 - **2-Profile Bluetooth + Per-Profile SK6812-mini-e LEDs** (`spi3`, 2 addressable LEDs on `P0.09`, software-reversed so Left LED = Profile 0 and Right LED = Profile 1).
-- **Toggleable Trackball Scroll Mode**: Hold **FN** + tap **Left** to toggle ball-to-scroll (`1/16` scaling) while keeping Left/Right clicks and FN active.
+- **Toggleable Trackball Scroll Mode**: Hold **FN** + tap **Left** to toggle axis-snapped 2D ball-to-scroll (`zmk-scroll-snap`, `1/16` scaling, Y-inverted for standard wheel direction) while keeping Left/Right clicks and FN active.
 - **Persistent DPI Cycle + Custom DPI via ZMK Studio**:
   - Quick-tap **FN** cycles through `200`, `600`, and `1000` DPI and saves the choice to flash.
   - **ZMK Studio** can also assign any custom DPI from `200` to `3200` (in steps of `200`) directly to the **FN** key.
@@ -109,5 +109,6 @@ Contributions, bug reports, and improvements are welcome:
 
 - **[zmkfirmware/zmk](https://github.com/zmkfirmware/zmk)** — Core ZMK wireless keyboard firmware.
 - **[badjeff/zmk-pmw3610-driver](https://github.com/badjeff/zmk-pmw3610-driver)** — `pixart,pmw3610-alt` optical trackball sensor driver.
+- **[kot149/zmk-scroll-snap](https://github.com/kot149/zmk-scroll-snap)** — Axis-locking scroll snap input processor (`&zip_scroll_snap`).
 - **[vinhcatba/zmk-bt-profile-led](https://github.com/vinhcatba/zmk-bt-profile-led)** — Per-profile Bluetooth connection status LED widget & `&bt_clr_all_led` behavior (based on **[caksoylar/zmk-rgbled-widget](https://github.com/caksoylar/zmk-rgbled-widget)** and **[awkannan/zmk-smart-rgbled-widget](https://github.com/awkannan/zmk-smart-rgbled-widget)**).
 - **[george-norton/zmk-behavior-sensor-attr-cycle](https://github.com/george-norton/zmk-behavior-sensor-attr-cycle)** — Inspiration and reference for sensor attribute cycling and settings persistence used in `behavior_sensor_attr_set.c`.
