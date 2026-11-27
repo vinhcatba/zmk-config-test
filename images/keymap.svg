@@ -82,7 +82,7 @@
     <!-- FN Callout -->
     <line x1="277" y1="197" x2="277" y2="222" stroke="#64748b" stroke-width="1.5"/>
     <rect x="142" y="222" width="270" height="44" class="callout-box"/>
-    <text x="277" y="240" class="callout-text">FN: Tap → Cycle DPI (200 / 600 / 1000)</text>
+    <text x="277" y="240" class="callout-text">FN: Tap → Cycle DPI (600 / 1000 / 200)</text>
     <text x="277" y="256" class="callout-sub">Hold → Layer 1 (BT)</text>
   </g>
 

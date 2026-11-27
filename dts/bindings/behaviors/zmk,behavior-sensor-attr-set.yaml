@@ -1,6 +1,6 @@
 # SPDX-License-Identifier: MIT
 
-description: Cycle a fixed DPI list (param=0) or set an explicit DPI value from 200 to 3200 in multiples of 200.
+description: Cycle a fixed DPI list on keypress and apply custom DPI (200..3200, step 200) immediately on ZMK Studio Save.
 
 compatible: "zmk,behavior-sensor-attr-set"
 
@@ -14,7 +14,7 @@ properties:
   values:
     required: true
     type: array
-    description: Fixed list of values cycled through when param1 is 0.
+    description: Fixed list of DPI values cycled through on physical keypress.
   attr:
     required: true
     type: int

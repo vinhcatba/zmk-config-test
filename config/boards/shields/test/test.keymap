@@ -14,8 +14,8 @@
 
 / {
     behaviors {
-        // Tap param 0: cycle fixed DPI list (200/600/1000).
-        // In ZMK Studio: set param to 200..3200 (step 200) for a custom DPI.
+        // Physical tap: cycle fixed DPI list (600/1000/200).
+        // ZMK Studio Save: immediately applies Param 2 (200..3200, step 200) without a keypress.
         dpi_set: sensor_dpi_set {
             compatible = "zmk,behavior-sensor-attr-set";
             #binding-cells = <1>;
@@ -56,7 +56,7 @@
             bindings = <
                 &mkp LCLK
                 &mkp RCLK
-                &fn_dpi BT 0
+                &fn_dpi BT 600
             >;
         };
 

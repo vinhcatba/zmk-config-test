@@ -11,9 +11,9 @@ Custom [ZMK](https://zmk.dev/) firmware configuration for a wireless 3-button **
 - **PMW3610 Optical Trackball** (`spi0`, `600 CPI` default, `12 ms` minimum BLE report interval for smooth macOS/Windows/iOS tracking).
 - **2-Profile Bluetooth + Per-Profile SK6812-mini-e LEDs** (`spi3`, 2 addressable LEDs on `P0.09`, software-reversed so Left LED = Profile 0 and Right LED = Profile 1).
 - **Toggleable Trackball Scroll Mode**: Hold **FN** + tap **Left** to toggle axis-snapped 2D ball-to-scroll (`zmk-scroll-snap`, `1/16` scaling, Y-inverted for standard wheel direction) while keeping Left/Right clicks and FN active.
-- **Persistent DPI Cycle + Custom DPI via ZMK Studio**:
-  - Quick-tap **FN** cycles through `200`, `600`, and `1000` DPI and saves the choice to flash.
-  - **ZMK Studio** can also assign any custom DPI from `200` to `3200` (in steps of `200`) directly to the **FN** key.
+- **Persistent DPI Cycle + Instant Custom DPI via ZMK Studio**:
+  - Quick-tap **FN** cycles through `600`, `1000`, and `200` DPI and saves the choice to flash.
+  - **ZMK Studio** lets you pick any custom DPI from `200` to `3200` (in steps of `200`) on the **FN** key and applies it **immediately when you click Save** (no keypress needed).
 - **ZMK Studio (USB & BLE)** unlocked by default (`CONFIG_ZMK_STUDIO_LOCKING=n`) with a hardware-accurate physical layout.
 - **Deep Sleep Power Management** (`CONFIG_ZMK_SLEEP=y`).
 
@@ -36,7 +36,7 @@ Custom [ZMK](https://zmk.dev/) firmware configuration for a wireless 3-button **
 
 | Layer | Name | Activation | Left Key | Right Key | FN Key | Trackball |
 | --- | --- | --- | --- | --- | --- | --- |
-| `0` | **Default** | Always active | `&mkp LCLK` | `&mkp RCLK` | Tap: Cycle DPI (`200 / 600 / 1000`)<br>Hold: Layer 1 (`BT`) | Cursor move |
+| `0` | **Default** | Always active | `&mkp LCLK` | `&mkp RCLK` | Tap: Cycle DPI (`600 / 1000 / 200`)<br>Hold: Layer 1 (`BT`) | Cursor move |
 | `1` | **BT** | Hold **FN** | Tap: Toggle Layer 3 (`Scroll`)<br>Hold: Layer 2 (`BT Clear`) | `&bt BT_NXT` (Cycle Profile `0 ↔ 1`) | `&trans` (held) | Cursor move |
 | `2` | **BT Clear** | Hold **FN** + Hold **Left** | `&trans` (held) | `&bt_clr_all_led` (Clear all BT bonds + blink LEDs) | `&trans` (held) | Cursor move |
 | `3` | **Scroll** | Hold **FN** + Tap **Left** | `&trans` (`LCLK`) | `&trans` (`RCLK`) | `&trans` (DPI / `BT`) | Scroll wheel (`1/16`) |
@@ -53,8 +53,8 @@ Custom [ZMK](https://zmk.dev/) firmware configuration for a wireless 3-button **
 
 ### Custom Behaviors
 - **`dpi_set` (`zmk,behavior-sensor-attr-set`)** — implemented in [src/behavior_sensor_attr_set.c](src/behavior_sensor_attr_set.c):
-  - `param1 = 0`: cycles the fixed `values = < 200 600 1000 >` list.
-  - `param1 = 200..3200` (step `200`): clamps/snaps to the nearest multiple of `200` and sets that CPI on `&trackball`.
+  - Physical tap always cycles the fixed `values = < 600 1000 200 >` list.
+  - When you click **Save** in **ZMK Studio**, changing the custom DPI parameter (`200..3200`, step `200`) clamps/snaps to the nearest multiple of `200` and applies it to `&trackball` **immediately without pressing any key**.
   - Persists the active DPI and cycle index in flash (`SETTINGS`) and restores them after boot (`load_delay = 1500 ms`).
 - **`fn_dpi` (`zmk,behavior-hold-tap`, `hold-preferred`, `200 ms`)**:
   - Hold activates `BT` (Layer 1); tap invokes `dpi_set`.
@@ -65,8 +65,8 @@ Custom [ZMK](https://zmk.dev/) firmware configuration for a wireless 3-button **
 
 ### Using ZMK Studio
 1. Open [zmk.studio](https://zmk.studio/) and connect over **USB** or **Bluetooth**.
-2. Click the **FN** key on Layer 0 (`FN / DPI`), keep Param 1 set to **BT**, and select either **Cycle DPI** (`0`) or any explicit value from **200 DPI** to **3200 DPI** for Param 2.
-3. Click **Save**.
+2. Click the **FN** key on Layer 0 (`FN / DPI`), keep Param 1 set to **BT**, and select any custom DPI from **200 DPI** to **3200 DPI** (step `200`) for Param 2.
+3. Click **Save** — the new custom DPI takes effect immediately without tapping any key, and tapping **FN** afterward continues to cycle `600 → 1000 → 200`.
 
 > **Note:** Changes saved in ZMK Studio are stored in NVS flash and override future `.keymap` edits until you click **Restore Stock Settings** in ZMK Studio (or flash a `settings_reset` firmware).
 
