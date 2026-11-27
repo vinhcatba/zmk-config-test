@@ -21,4 +21,3 @@
 include:
   - board: nice_nano@2.0.0//zmk
     shield: test
-    snippet: zmk-usb-logging
