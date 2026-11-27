@@ -1,0 +1,5 @@
+if(CONFIG_ZMK_BEHAVIOR_SENSOR_ATTR_SET)
+  zephyr_library()
+  zephyr_library_sources(src/behavior_sensor_attr_set.c)
+  zephyr_include_directories(${APPLICATION_SOURCE_DIR}/include)
+endif()

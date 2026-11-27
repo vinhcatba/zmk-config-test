@@ -1,0 +1,32 @@
+# SPDX-License-Identifier: MIT
+
+description: Cycle a fixed DPI list (param=0) or set an explicit DPI value from 200 to 3200 in multiples of 200.
+
+compatible: "zmk,behavior-sensor-attr-set"
+
+include: one_param.yaml
+
+properties:
+  sensor_device:
+    required: true
+    type: phandle
+    description: The target sensor device to send sensor_attr_set commands to.
+  values:
+    required: true
+    type: array
+    description: Fixed list of values cycled through when param1 is 0.
+  attr:
+    required: true
+    type: int
+    description: The sensor attribute identifier to modify.
+  persistant:
+    type: boolean
+    description: Persist active DPI and cycle index to flash and restore on boot.
+  save_delay:
+    default: 2000
+    type: int
+    description: Delay in ms before writing persisted state to flash.
+  load_delay:
+    default: 1500
+    type: int
+    description: Delay in ms after boot before applying restored DPI to the sensor.

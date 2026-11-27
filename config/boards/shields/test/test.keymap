@@ -12,14 +12,15 @@
 
 / {
     behaviors {
-        // Behaviour to cycle through DPI values on a keypress
-        dpi_cycle: sensor_dpi_cycle {
-            compatible = "zmk,behavior-sensor-attr-cycle";
+        // Tap param 0: cycle fixed DPI list (200/600/1000).
+        // In ZMK Studio: set param to 200..3200 (step 200) for a custom DPI.
+        dpi_set: sensor_dpi_set {
+            compatible = "zmk,behavior-sensor-attr-set";
             #binding-cells = <1>;
-            values = < 400 600 1000 >;
+            values = < 200 600 1000 >;
             attr = <0>;
             sensor_device = <&trackball>;
-            display-name = "DPI cycle";
+            display-name = "DPI";
             persistant;
         };
 
@@ -28,7 +29,8 @@
             #binding-cells = <2>;
             flavor = "hold-preferred";
             tapping-term-ms = <200>;
-            bindings = <&mo>, <&dpi_cycle>;
+            bindings = <&mo>, <&dpi_set>;
+            display-name = "FN / DPI";
         };
 
         bt_scroll: bt_scroll {
@@ -52,7 +54,7 @@
             bindings = <
                 &mkp LCLK
                 &mkp RCLK
-                &fn_dpi BT 1
+                &fn_dpi BT 0
             >;
         };
 
