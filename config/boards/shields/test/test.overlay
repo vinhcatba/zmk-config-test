@@ -6,7 +6,6 @@
     chosen {
         zmk,kscan = &kscan0;
         zmk,physical-layout = &physical_layout0;
-        zmk,matrix_transform = &default_transform;
         zmk,bt-profile-led-strip = &led_strip;
         // Other chosen items
     };

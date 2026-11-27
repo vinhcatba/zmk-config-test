@@ -6,21 +6,16 @@ manifest:
     # See https://docs.zephyrproject.org/3.2.0/develop/west/manifest.html#projects
     - name: badjeff
       url-base: https://github.com/badjeff
-    - name: george-norton
-      url-base: https://github.com/george-norton
     - name: vinhcatba
       url-base: https://github.com/vinhcatba
   projects:
     - name: zmk
       remote: zmkfirmware
-      revision: main
+      revision: 4de313367288aad5aeaa1243890e40dc813f7008
       import: app/west.yml
     - name: zmk-pmw3610-driver
       remote: badjeff
       revision: main
-    - name: zmk-behavior-sensor-attr-cycle
-      remote: george-norton
-      revision: v0.3
     - name: zmk-bt-profile-led
       remote: vinhcatba
       revision: main

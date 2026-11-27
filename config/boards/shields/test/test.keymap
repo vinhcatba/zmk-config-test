@@ -17,7 +17,7 @@
         dpi_set: sensor_dpi_set {
             compatible = "zmk,behavior-sensor-attr-set";
             #binding-cells = <1>;
-            values = < 200 600 1000 >;
+            values = < 600 1000 200 >;
             attr = <0>;
             sensor_device = <&trackball>;
             display-name = "DPI";
