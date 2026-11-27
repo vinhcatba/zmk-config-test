@@ -1,5 +1,6 @@
 #include <dt-bindings/zmk/matrix_transform.h>
 #include <dt-bindings/led/led.h>
+#include <physical_layouts.dtsi>
 
 / {
     chosen {
@@ -25,6 +26,11 @@
         display-name = "Default Layout";
         kscan = <&kscan0>; // Label of the kscan node, optional if all layouts use the same
         transform = <&default_transform>; // Label of the matrix transform for this layout
+        keys  //                     w   h    x    y   rot rx ry
+            = <&key_physical_attrs 100 100    0    0    0   0  0>  // Left (left of trackball)
+            , <&key_physical_attrs 100 100  350    0    0   0  0>  // Right (right of trackball, 2.5u center gap)
+            , <&key_physical_attrs  60  50  195  140    0   0  0>  // FN (front edge, centered below trackball)
+            ;
     };
 
     default_transform: keymap_transform0 {

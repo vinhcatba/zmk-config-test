@@ -44,6 +44,7 @@
         compatible = "zmk,keymap";
 
         default_layer { // Layer 0
+            display-name = "Default";
             // -------------
             // |     Z     |
             // |     A     |
@@ -56,6 +57,7 @@
         };
 
         bt_layer { // Layer 1 (Hold FN)
+            display-name = "BT";
             bindings = <
                 &bt_scroll BT_CLEAR SCROLL
                 &bt BT_NXT
@@ -64,6 +66,7 @@
         };
 
         bt_clear_layer { // Layer 2 (Hold FN + Hold left key)
+            display-name = "BT Clear";
             bindings = <
                 &trans
                 &bt_clr_all_led
@@ -72,6 +75,7 @@
         };
 
         scroll_layer { // Layer 3 (Hold FN + Tap left key)
+            display-name = "Scroll";
             bindings = <
                 &trans
                 &trans
